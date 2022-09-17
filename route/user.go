@@ -19,4 +19,9 @@ func RegisterUser(c *gin.Context) {
 	}
 
 	//hash Password
+	if err := user.HashPassword(user.Password);err!= nil{
+		c.JSON(http.StatusInternalServerError,gin.H{
+			"message":
+		})
+	}
 }
