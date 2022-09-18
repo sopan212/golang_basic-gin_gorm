@@ -1,10 +1,11 @@
 package route
 
 import (
-	"github.com/gin-gonic/gin"
-	config "go_basic_gorm_gin/config"
+	"go_basic_gorm_gin/config"
 	"go_basic_gorm_gin/model"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func GetDepartment(c *gin.Context) {

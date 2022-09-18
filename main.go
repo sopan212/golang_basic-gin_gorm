@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"go_basic_gorm_gin/config"
 	"go_basic_gorm_gin/route"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -13,7 +14,7 @@ func main() {
 	router := gin.Default()
 	user := router.Group("/user")
 	{
-		user.POST("get-token")
+		user.POST("get-token", route.GenerateToken)
 		user.POST("register", route.RegisterUser)
 	}
 
