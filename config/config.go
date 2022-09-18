@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"go_basic_gorm_gin/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -18,25 +19,33 @@ func InitDB() {
 	}
 
 	DB.AutoMigrate(&model.Positions{}, &model.Department{}, &model.User{})
-	//DB.Create(&model.Positions{
-	//	Name: "Enginer",
-	//	Code: "eng",
-	//})
-	//DB.Create(&model.Department{
-	//	Name: "HUMAN RESOURCE",
-	//	Code: "hrd",
-	//	Positions: []model.Positions{
-	//		{Name: "General Manager", Code: "GM"},
-	//		{Name: "Manager", Code: "M HRD"},
-	//	},
-	//})
-	//DB.Create(&model.Department{
-	//	Name: "FINANCE",
-	//	Code: "fin",
-	//	Positions: []model.Positions{
-	//		{Name: "General Manager", Code: "GM"},
-	//		{Name: "Manager", Code: "M FIN"},
-	//	},
-	//})
+
+	fmt.Println("success migrate")
+	DB.Create(&model.Positions{
+		Name: "Enginer",
+		Code: "eng",
+	})
+	DB.Create(&model.Department{
+		Name: "HUMAN RESOURCE",
+		Code: "hrd",
+		Positions: []model.Positions{
+			{Name: "General Manager", Code: "GM"},
+			{Name: "Manager", Code: "M HRD"},
+		},
+	})
+	DB.Create(&model.Department{
+		Name: "FINANCE",
+		Code: "fin",
+		Positions: []model.Positions{
+			{Name: "General Manager", Code: "GM"},
+			{Name: "Manager", Code: "M FIN"},
+		},
+	})
+	DB.Create(&model.User{
+		Name:     "Sopan",
+		Username: "sopanx",
+		Email:    "Sopan@sopa.com",
+		Password: "123123",
+	})
 
 }
