@@ -1,6 +1,7 @@
 package route
 
 import (
+	"fmt"
 	"go_basic_gorm_gin/config"
 	"go_basic_gorm_gin/model"
 	"net/http"
@@ -10,6 +11,9 @@ import (
 
 func GetDepartment(c *gin.Context) {
 	departments := []model.Department{}
+	for _, val := range departments {
+		fmt.Println(val)
+	}
 	config.DB.Preload("Positions").Find(&departments)
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Welcome to Departments",

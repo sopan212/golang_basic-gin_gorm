@@ -10,7 +10,7 @@ import (
 
 func GetPosition(c *gin.Context) {
 	position := []model.Positions{}
-	config.DB.Find(&position)
+	config.DB.Preload("Departments").Find(&position)
 	c.JSON(http.StatusOK, gin.H{
 		"message": "Data Fineded",
 		"data":    position,

@@ -2,6 +2,7 @@ package main
 
 import (
 	"go_basic_gorm_gin/config"
+	"go_basic_gorm_gin/middlewares"
 	"go_basic_gorm_gin/route"
 	"net/http"
 
@@ -10,7 +11,7 @@ import (
 
 func main() {
 	config.InitDB()
-
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	user := router.Group("/user")
 	{
@@ -18,7 +19,7 @@ func main() {
 		user.POST("register", route.RegisterUser)
 	}
 
-	department := router.Group("/department")
+	department := router.Group("/department").Use(middlewares.Auth())
 	{
 		department.GET("/", route.GetDepartment)
 		department.GET("/:id", route.GetDepartmentById)
@@ -29,7 +30,7 @@ func main() {
 	}
 	router.GET("/", getHome)
 
-	position := router.Group("/position")
+	position := router.Group("/position").Use(middlewares.Auth())
 	{
 		position.GET("/", route.GetPosition)
 		position.GET("/:id", route.GetPositionById)
